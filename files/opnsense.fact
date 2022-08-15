@@ -1,6 +1,6 @@
-#! /bin/sh
+#!/bin/sh
 
-echo "{"
+echo "{" 
 
 cd /usr/local/opnsense/version/
 
@@ -12,6 +12,12 @@ if [ -x /usr/local/opnsense/scripts/firmware/changelog.sh ]; then
 	echo "\"firmware_changelog\":"
 	/usr/local/opnsense/scripts/firmware/changelog.sh list
 	echo ","
+fi
+
+if [ -x /usr/local/opnsense/scripts/firmware/latest.php ]; then
+	echo -n "\"latest_version\": \""
+	/usr/local/opnsense/scripts/firmware/latest.php | tr -d '\n'
+	echo "\","
 fi
 
 
